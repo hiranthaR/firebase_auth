@@ -1,0 +1,9 @@
+[project]
+org-name= "hirantha"
+version= "0.1.2"
+authors= ["hirantha"]
+repository = "https://github.com/hiranthaR/firebase_auth"
+keywords = ["ballerina","firebase","auth","endpoint","connector"]
+
+[dependencies]
+"hirantha/firebase_core"= "0.1.1"
