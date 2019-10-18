@@ -1,0 +1,9 @@
+org_name = "hirantha"
+version = "0.1.2"
+lockfile_version = "1.0.0"
+ballerina_version = "1.0.0"
+
+[[imports."hirantha/firebase_auth:0.1.2"]]
+org_name = "hirantha"
+name = "firebase_core"
+version = "0.1.1"

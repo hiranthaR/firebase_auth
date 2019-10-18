@@ -29,6 +29,17 @@ public type FirebaseAuth object {
         return parseResposeToEmailAuthResponse(response);
     }
 
+    public function signInWithEmail(string email,string password) returns @tainted EmailSignUpResponse | FirebaseAuthError {
+         EmailAuthProvider emailAuthProvider = new (email, password);
+        http:Request req = new;
+        req.addHeader("Content-Type", "application/json");
+        req.setJsonPayload(emailAuthProvider.getCredential());
+        string url = self.api(FIREBASE_SIGNUP_API);
+        http:Response | error response = wait start self.clientEndpoint-> post(url, req);
+        return parseResposeToEmailAuthResponse(response);
+    
+    }
+
     # create api url with api token
     # + api - api to request
     # + return - request url 
