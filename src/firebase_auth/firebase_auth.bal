@@ -26,8 +26,23 @@ public type FirebaseAuth object {
         req.setJsonPayload(emailAuthProvider.getCredential());
         string url = self.api(FIREBASE_SIGNUP_API);
         http:Response | error response = wait start self.clientEndpoint-> post(url, req);
-        return parseResposeToEmailAuthResponse(response);
+        return parseSignUpResposeToEmailAuthResponse(response);
     }
+
+    # signin user with email and password with firebase
+    # + email - user provided email
+    # +password - user provided password.should be more than 6 letters
+    # + return - response from firebase
+    public function signInWithEmailAndPassword(string email, string password) returns @tainted EmailSignInResponse | FirebaseAuthError {
+        EmailAuthProvider emailAuthProvider = new (email, password);
+        http:Request req = new;
+        req.addHeader("Content-Type", "application/json");
+        req.setJsonPayload(emailAuthProvider.getCredential());
+        string url = self.api(FIREBASE_SIGNIN_API);
+        http:Response | error response = wait start self.clientEndpoint-> post(url, req);
+        return parseSignInResposeToEmailAuthResponse(response);
+    }
+
 
     # create api url with api token
     # + api - api to request

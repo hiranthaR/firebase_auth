@@ -42,6 +42,12 @@ var firebaseapp = new firebase_core:Firebase({
 if (firebaseapp is firebase_core:Firebase) {
         auth:FirebaseAuth auth = new (firebaseapp);
         var res = auth.signUpWithEmailAndPassword("example@email.com", "123456");
-        io:print(res);
+        io:println(res);
+}
+
+if (firebaseapp is firebase_core:Firebase) {
+        auth:FirebaseAuth auth = new (firebaseapp);
+        var res = auth.signInWithEmailAndPassword("example@email.com", "123456");
+        io:println(res);
 }
 ```
